@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { Navigate } from 'react-router-dom';
+import { MyContext } from '../Context/MyContext.js';
 
 
 function Login() {
-    const [user, setUser] = useState("")
-    const [password, setPassword] = useState("")
+    const [user, setUser] = useState("atuny0");
+    const [password, setPassword] = useState("9uQFF1Lh");
+    const {login, setLogin} = useContext(MyContext)
     const validateLogin = () => {
         const data=
         {
@@ -12,13 +15,21 @@ function Login() {
         }
         fetch("https://dummyjson.com/auth/login", {
           method: "POST",
+          body: JSON.stringify(data),
           headers: {
-            Accept: "application/json",
-          }, body: JSON.stringify(data)
-        }).then(result => result.json())
-        .then( result => console.log(result));
+            "Content-Type": "application/json",
+          },
+        }).then((result) => result.json())
+          .then((result) => {
+            setLogin(
+              {isLogin: true, user: result}
+            )
+          });
     }
-
+    if (login?.isLogin) {
+       return <Navigate to="/index" />;
+    }
+ 
   return (
     <>
       <div className="container">
