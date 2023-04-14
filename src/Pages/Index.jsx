@@ -47,7 +47,9 @@ function Index() {
             <p> Disponible: {e.stock} </p>
             <p> Marca: {e.brand} </p>
             <img src={e.thumbnail} style={{width:250}} alt="" />
-
+           <br/>
+           <button> Ver detalle </button>
+           <button> Agregar al carrito</button>
           </div>
          
         </>
