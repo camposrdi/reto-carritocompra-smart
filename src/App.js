@@ -5,6 +5,7 @@ import Index from './Pages/Index.jsx';
 import Login from './Components/Login.jsx';
 import Content from './Components/Content.jsx';
 import { MyContext } from './Context/MyContext.js';
+import DetalleProducto from './Components/DetalleProducto.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,16 @@ const router = createBrowserRouter([
       </Content>
     ),
   },
+
+  {
+    path: "/detalleproducto/:id",
+    element: (
+      <Content>
+        <DetalleProducto />
+      </Content>
+    ),
+  },
+
 ]);
 
 const loginUser =  {

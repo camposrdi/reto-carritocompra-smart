@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 import { MyContext } from '../Context/MyContext.js'
+import DetalleProducto from '../Components/DetalleProducto.jsx'
 
 function Index() {
   const {login} = useContext(MyContext)
@@ -25,9 +26,13 @@ function Index() {
   if(!login?.isLogin){
     return <Navigate to = "/login" />
   };
+  
+  
+  
+  const agregarcarrito = () =>{
+    console.log("first")
+  };
 
-  
-  
   return (
 
     <>
@@ -42,16 +47,11 @@ function Index() {
             <h3>{e.title}</h3>
             <p> Descripción: {e.description} </p>
             <p> Precio: {e.price} </p>
-            <p> Descuento por edad: {e.discountPercentage} </p>
-            <p> Rating: {e.rating} </p>
-            <p> Disponible: {e.stock} </p>
-            <p> Marca: {e.brand} </p>
-            <img src={e.thumbnail} style={{width:250}} alt="" />
-           <br/>
-           <button> Ver detalle </button>
-           <button> Agregar al carrito</button>
+            <img src={e.thumbnail} style={{ width: 250 }} alt="" />
+            <br />
+            <Link to={`/detalleproducto/${e.id}`}> Ver detalle </Link>
+            <a href='#' onClick={()=>{agregarcarrito()}}> Agregar al carrito</a>
           </div>
-         
         </>
       );
     })
